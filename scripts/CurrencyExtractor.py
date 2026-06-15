@@ -1,9 +1,10 @@
 import requests
-import os
 from dotenv import load_dotenv
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 load_dotenv()
-
 
 class CurrencyExtractor:
     def __init__(self, base_currency="USD"):
@@ -17,7 +18,7 @@ class CurrencyExtractor:
             response.raise_for_status()
             return response.json()
         except requests.RequestException as e:
-            print(f"Request failed: {e}")
+            logger.info(f"Request failed: {e}")
             return None
 
     def filter_target_currencies(self, raw_data, targets):
@@ -28,10 +29,12 @@ class CurrencyExtractor:
         return {c: rates.get(c) for c in targets if c in rates}
 
 
-if __name__ == "__main__":
-    extractor = CurrencyExtractor("USD")
-    data = extractor.fetch_rates()
-    targets = ["CZK", "KZT", "EUR"]
-    result = extractor.filter_target_currencies(data, targets)
+    if __name__ == "__main__":
+        extractor = CurrencyExtractor("USD")
+        raw_data = extractor.fetch_rates()
+        if raw_data:
+            targets = ["CZK", "KZT", "EUR"]
 
-    print(result)
+        result = extractor.filter_target_currencies(data, targets)
+
+        logger.info(result)
