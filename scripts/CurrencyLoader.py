@@ -2,13 +2,14 @@ import psycopg2
 import os
 from datetime import date
 import logging
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class PostgresLoader:
     def __init__(self):
         self.conn_params = {
-            "host": "localhost",
+            "host": "postgres",
             "port": 5432,
             "dbname": os.getenv("POSTGRES_DB"),
             "user": os.getenv("POSTGRES_USER"),

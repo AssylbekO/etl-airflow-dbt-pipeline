@@ -1,10 +1,8 @@
 import requests
-from dotenv import load_dotenv
 import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-load_dotenv()
 
 class CurrencyExtractor:
     def __init__(self, base_currency="USD"):
