@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: stg_exchange_rates
+    description: "Cleaned daily exchange rates with inverse calculations."
+    columns:
+      - name: rate_date
+        description: "The exact date the exchange rate was pulled from the API."
+        data_tests:
+          - not_null
+      - name: base_currency
+        description: "The currency being converted from (Always USD)."
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['USD']
+      - name: target_currency
+        description: "The destination currency."
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['CZK', 'KZT', 'EUR']
+      - name: rate
+        description: "The standard exchange rate (1 USD = X Target)."
+        data_tests:
+          - not_null
+      - name: inverse_rate
+        description: "How much of the target currency is needed to buy 1 USD."
+        data_tests:
+          - not_null

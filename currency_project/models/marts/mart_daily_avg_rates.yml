@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: mart_daily_avg_rates
+    description: "Daily average exchange rates aggregated from staging."
+    columns:
+      - name: rate_date
+        description: "The date of the exchange rate."
+        data_tests:
+          - not_null
+      - name: base_currency
+        description: "The currency being converted from (always USD)."
+        data_tests:
+          - not_null
+      - name: target_currency
+        description: "The destination currency."
+        data_tests:
+          - not_null
+      - name: avg_rate
+        description: "Average exchange rate for that day (1 USD = X target)."
+        data_tests:
+          - not_null
+      - name: avg_inverse_rate
+        description: "Average inverse rate for that day."
+        data_tests:
+          - not_null

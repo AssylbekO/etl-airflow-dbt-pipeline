@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: mart_currency_comparison
+    description: "Daily exchange rates pivoted into one row per date for easy comparison across currencies."
+    columns:
+      - name: rate_date
+        description: "The date of the exchange rates."
+        data_tests:
+          - not_null
+          - unique
+      - name: czk_rate
+        description: "Average USD to CZK rate for the day."
+        data_tests:
+          - not_null
+      - name: kzt_rate
+        description: "Average USD to KZT rate for the day."
+        data_tests:
+          - not_null
+      - name: eur_rate
+        description: "Average USD to EUR rate for the day."
+        data_tests:
+          - not_null
+      - name: czk_inverse_rate
+        description: "How much CZK is needed to buy 1 USD."
+        data_tests:
+          - not_null
+      - name: kzt_inverse_rate
+        description: "How much KZT is needed to buy 1 USD."
+        data_tests:
+          - not_null
+      - name: eur_inverse_rate
+        description: "How much EUR is needed to buy 1 USD."
+        data_tests:
+          - not_null

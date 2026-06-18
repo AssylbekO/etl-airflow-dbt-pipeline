@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: public
+    description: "Our raw, landing-zone tables inside PostgreSQL"
+    schema: public
+    tables:
+      - name: raw_exchange_rates
+        description: "Raw daily exchange rates pulled from the public API"
